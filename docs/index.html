@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinyal Saham BEI</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--text:#1d2129;--muted:#6b7280;--line:#e8eaee;--up:#15803d;--down:#c0392b;
+--upbg:#e3f4e8;--downbg:#fbe5e3;--chip:#eef0f3;--accent:#2563eb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--card:#181b21;--text:#e7e9ee;--muted:#9aa1ad;
+--line:#2a2f38;--up:#4ade80;--down:#f87171;--upbg:#173323;--downbg:#3a1d1d;--chip:#252a33;--accent:#60a5fa}}
+:root[data-theme="dark"]{--bg:#0f1115;--card:#181b21;--text:#e7e9ee;--muted:#9aa1ad;--line:#2a2f38;--up:#4ade80;--down:#f87171;
+--upbg:#173323;--downbg:#3a1d1d;--chip:#252a33;--accent:#60a5fa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.top{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:var(--card);border-bottom:1px solid var(--line);font-size:13px;color:var(--muted)}
+button{font:inherit;border:0;background:var(--chip);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer}
+.wrap{max-width:1560px;margin:0 auto;padding:20px 16px}
+h1{font-size:22px;margin:0 0 16px;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+h1 small{font-size:15px;font-weight:400;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+.kpi .l{color:var(--muted)}.kpi .v{font-size:24px;font-weight:600;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px;align-items:start}
+.col{display:flex;flex-direction:column;gap:18px;min-width:0}
+h2{font-size:16px;margin:0 0 12px}h2 span{font-weight:400;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-weight:400;color:var(--muted);font-size:13px;text-align:left;padding:6px}
+td{padding:8px 6px;border-top:1px solid var(--line)}
+th.n,td.n{text-align:right}tr.click{cursor:pointer}tr.click:hover td{background:var(--chip)}
+.up{color:var(--up)}.down{color:var(--down)}.muted{color:var(--muted)}
+.tag{font-size:12px;padding:2px 8px;border-radius:10px;background:var(--chip)}
+.tag.naik{background:var(--upbg);color:var(--up)}.tag.turun{background:var(--downbg);color:var(--down)}
+.sig{padding:10px 12px;border-radius:10px;background:var(--chip);margin-bottom:8px}
+.sig.sell{background:var(--downbg)}.sig b{font-size:16px}
+.scroll{overflow-x:auto}
+#chart{height:480px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chips button{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:4px 12px}
+.chips button.on{border-color:var(--accent);color:var(--accent)}
+.ai{white-space:pre-wrap}
+.legend{font-size:13px;color:var(--muted);margin-top:6px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}#chart{height:380px}}
+</style>
+</head>
+<body>
+<div class="top"><span id="upd">Memuat…</span><button onclick="load()">Perbarui data</button></div>
+<div class="wrap">
+  <h1>Sinyal Saham BEI <small id="sub"></small></h1>
+  <div class="kpis">
+    <div class="card kpi"><div class="l">IHSG</div><div class="v" id="ihsg">–</div></div>
+    <div class="card kpi"><div class="l">Sinyal beli hari ini</div><div class="v" id="nbuy">–</div></div>
+    <div class="card kpi"><div class="l">Posisi Anda</div><div class="v" id="npos">–</div></div>
+  </div>
+  <div class="grid">
+    <div class="col">
+      <div class="card"><h2>🔔 Sinyal <span id="modal"></span></h2><div id="signals"></div></div>
+      <div class="card"><h2>💼 Posisi Anda</h2><div id="positions" class="scroll"></div></div>
+      <div class="card"><h2>🚀 Top 10 berpotensi</h2><div class="scroll"><table id="top"></table></div></div>
+      <div class="card"><h2>👀 Pantauan</h2><div class="scroll"><table id="watch"></table></div></div>
+      <div class="card"><h2>📒 Riwayat transaksi</h2><div id="closed" class="scroll"></div></div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h2 id="ctitle">–</h2>
+        <div id="chart"></div>
+        <div class="legend">▲ hijau = sinyal beli lama · ▼ merah = sinyal jual (angka = hasil transaksi) · garis: rata-rata 20 &amp; 50 hari</div>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="card"><h2>🤖 Catatan AI</h2><div class="ai" id="ai">–</div></div>
+    </div>
+  </div>
+  <p class="muted" style="font-size:13px">Alat bantu analisis teknikal, bukan rekomendasi investasi. Keputusan & risiko tetap di tangan Anda.</p>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const fmt = n => n == null ? "–" : Number(n).toLocaleString("id-ID", {maximumFractionDigits: 0});
+const pct = v => { const n = Number(v); return v == null || isNaN(n) ? "–" : `<span class="${n >= 0 ? "up" : "down"}">${n >= 0 ? "+" : ""}${n.toFixed(1).replace(".", ",")}%</span>`; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+let chart, current, S;
+
+async function load() {
+  S = await fetch("data/summary.json?t=" + Date.now()).then(r => r.json());
+  $("upd").textContent = "Diperbarui " + S.updated.split(" ")[1];
+  $("sub").textContent = `Data penutupan ${S.data_date.split("-").reverse().join("-")} · diperbarui ${S.updated}`;
+  $("ihsg").innerHTML = `${fmt(S.ihsg.close)} <small>${pct(S.ihsg.chg)}</small>`;
+  $("nbuy").textContent = S.buys.length;
+  $("npos").textContent = S.positions.length;
+  $("modal").textContent = `· modal Rp ${fmt(S.modal)} · kas Rp ${fmt(S.cash)}`;
+
+  let sig = S.sells.map(s => `<div class="sig sell"><b>${s.action} ${s.code}</b> ${s.lots} lot ≈ ${fmt(s.price)} ${pct(s.pct)}<br><span class="muted">${s.reason}</span></div>`).join("");
+  sig += S.buys.map(b => `<div class="sig"><b>BELI ${b.code}</b> ${b.lots} lot ≈ ${fmt(b.price)} (Rp ${fmt(b.cost)})<br>
+    <span class="muted">skor ${b.score} · RSI ${b.rsi} · stop ${fmt(b.stop)} · target ${fmt(b.target)}</span></div>`).join("");
+  $("signals").innerHTML = sig || '<span class="muted">Tidak ada sinyal hari ini.</span>';
+
+  $("positions").innerHTML = S.positions.length ? `<table><tr><th>Kode</th><th class="n">Lot</th><th class="n">Beli</th><th class="n">Terakhir</th><th class="n">P/L</th><th class="n">Stop</th><th>Status</th></tr>` +
+    S.positions.map(p => `<tr class="click" onclick="show('${p.code}')"><td><b>${p.code}</b></td><td class="n">${p.lots}</td><td class="n">${fmt(p.entry)}</td><td class="n">${fmt(p.last)}</td><td class="n">${pct(p.pct)}</td><td class="n">${fmt(p.stop)}</td><td>${p.status || "TAHAN"}</td></tr>`).join("") + "</table>"
+    : '<span class="muted">Belum ada posisi. Catat lewat Telegram: /beli KODE HARGA LOT</span>';
+
+  const tagT = t => `<span class="tag ${t}">${t}</span>`;
+  $("top").innerHTML = `<tr><th>#</th><th>Kode</th><th class="n">Harga</th><th class="n">Skor</th><th class="n">3 bln</th><th class="n">RSI</th><th>Tren</th></tr>` +
+    S.top10.map((r, i) => `<tr class="click" onclick="show('${r.code}')"><td>${i + 1}</td><td><b>${r.code}</b></td><td class="n">${fmt(r.price)}</td><td class="n">${r.score}</td><td class="n">${pct(r.ret3m)}</td><td class="n">${r.rsi}</td><td>${tagT(r.trend)}</td></tr>`).join("");
+  $("watch").innerHTML = `<tr><th>Kode</th><th class="n">Harga</th><th class="n">Hari ini</th><th>Tren</th><th class="n">RSI</th><th class="n">MA50</th></tr>` +
+    S.watch.map(r => `<tr class="click" onclick="show('${r.code}')"><td><b>${r.code}</b></td><td class="n">${fmt(r.price)}</td><td class="n">${pct(r.chg)}</td><td>${tagT(r.trend)}</td><td class="n">${r.rsi}</td><td class="n">${fmt(r.ma50)}</td></tr>`).join("");
+  $("closed").innerHTML = S.closed.length ? `<table><tr><th>Kode</th><th>Tgl jual</th><th class="n">Beli</th><th class="n">Jual</th><th class="n">Hasil</th></tr>` +
+    S.closed.slice().reverse().map(c => `<tr><td><b>${c.code}</b></td><td>${c.exit_date}</td><td class="n">${fmt(c.entry)}</td><td class="n">${fmt(c.exit)}</td><td class="n">Rp ${fmt(c.pnl)} ${pct(c.pct)}</td></tr>`).join("") + "</table>"
+    : '<span class="muted">Belum ada.</span>';
+  $("ai").textContent = (S.ai || "Belum ada catatan AI (isi ANTHROPIC_API_KEY).").replace(/<\/?b>/g, "");
+
+  $("chips").innerHTML = S.charts.map(c => `<button data-c="${c}" onclick="show('${c}')">${c}</button>`).join("");
+  const pick = [current, S.positions[0]?.code, S.buys[0]?.code, S.watch[0]?.code].find(c => c && S.charts.includes(c));
+  show(pick || S.charts[0]);
+}
+
+async function show(code) {
+  if (!S.charts.includes(code)) return;
+  current = code;
+  document.querySelectorAll("#chips button").forEach(b => b.classList.toggle("on", b.dataset.c === code));
+  const d = await fetch(`data/chart/${code}.json?t=` + Date.now()).then(r => r.json());
+  const last = d.ohlc.at(-1)[1], prev = d.ohlc.at(-2)[1];
+  $("ctitle").innerHTML = `${code} <span>${fmt(last)} ${pct((last / prev - 1) * 100)} · 1 tahun terakhir</span>`;
+  const up = css("--up"), down = css("--down"), muted = css("--muted"), line = css("--line");
+  const buy = d.marks.filter(m => m.type === "buy").map(m => ({coord: [m.date, m.price], value: "", itemStyle: {color: up}, symbol: "triangle", symbolSize: 12, symbolOffset: [0, 12]}));
+  const sell = d.marks.filter(m => m.type === "sell").map(m => ({coord: [m.date, m.price], value: (m.pct > 0 ? "+" : "") + m.pct + "%", itemStyle: {color: down}, symbol: "triangle", symbolRotate: 180, symbolSize: 12, symbolOffset: [0, -12], label: {color: m.pct >= 0 ? up : down, position: "top", fontSize: 11}}));
+  chart = chart || echarts.init($("chart"));
+  chart.setOption({
+    animation: false, textStyle: {color: muted},
+    legend: {top: 0, textStyle: {color: muted}, data: ["Harga", "MA20", "MA50"]},
+    tooltip: {trigger: "axis", axisPointer: {type: "cross"}},
+    grid: {left: 56, right: 16, top: 36, bottom: 56},
+    xAxis: {type: "category", data: d.dates, axisLine: {lineStyle: {color: line}}, axisLabel: {color: muted}},
+    yAxis: {scale: true, splitLine: {lineStyle: {color: line}}, axisLabel: {color: muted, formatter: v => fmt(v)}},
+    dataZoom: [{type: "inside", start: 0, end: 100}, {type: "slider", height: 18, bottom: 8}],
+    series: [
+      {name: "Harga", type: "candlestick", data: d.ohlc, itemStyle: {color: up, color0: down, borderColor: up, borderColor0: down},
+       markPoint: {data: [...buy, ...sell], label: {show: true}}},
+      {name: "MA20", type: "line", data: d.ma20, showSymbol: false, lineStyle: {width: 1.4, color: "#3b5bdb"}, itemStyle: {color: "#3b5bdb"}},
+      {name: "MA50", type: "line", data: d.ma50, showSymbol: false, lineStyle: {width: 1.4, color: "#b5651d"}, itemStyle: {color: "#b5651d"}}
+    ]
+  }, true);
+}
+addEventListener("resize", () => chart && chart.resize());
+load().catch(e => { $("upd").textContent = "Data belum tersedia — jalankan workflow harian dulu."; console.error(e); });
+</script>
+</body>
+</html>
