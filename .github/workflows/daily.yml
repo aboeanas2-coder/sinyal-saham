@@ -1,0 +1,37 @@
+name: Laporan harian 16:30 WIB
+on:
+  schedule:
+    - cron: "30 9 * * 1-5"   # 16:30 WIB (UTC+7)
+    - cron: "30 10 * * 1-5"  # cadangan 17:30 WIB kalau data Yahoo telat (tidak kirim dua kali)
+    - cron: "30 23 * * 0-4"  # cadangan 06:30 WIB besok paginya
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Paksa jalan walau bukan hari bursa"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+concurrency: portfolio
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -r requirements.txt
+      - run: python bot/daily.py ${{ inputs.force && '--force' || '' }}
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+      - name: Simpan data
+        run: |
+          git config user.name "sinyal-bot"
+          git config user.email "sinyal-bot@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet || (git commit -m "data $(date -u +%F)" && git pull --rebase && git push)
