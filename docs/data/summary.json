@@ -1,5 +1,5 @@
 {
- "updated": "24-11-2026 01:14",
+ "updated": "24-11-2026 01:39",
  "data_date": "2026-11-20",
  "ihsg": {
   "close": 5146,
@@ -266,7 +266,7 @@
    "ma50": 1261.5
   }
  ],
- "ai": "<b>Laporan Pasar BEI - 2026-11-20</b>\n\n<b>IHSG</b> ditutup melemah <b>-0.92%</b> di level <b>5146</b> dan berada di bawah MA50, menunjukkan tren makro yang sedang lemah.\n\nHari ini <b>tidak ada sinyal beli</b> yang memenuhi kriteria sistem.\n\nTidak ada posisi terbuka maupun sinyal jual yang aktif.\n\nIngat, lindungi modal Anda dan jangan paksakan masuk pasar saat tren sedang turun.",
+ "ai": "Laporan Pasar BEI - <b>2026-11-20</b>\n\n<b>IHSG</b> ditutup melemah <b>-0.92%</b> di level <b>5146</b> dan berada di bawah MA50, menunjukkan tren yang masih rapuh.\n\nHari ini tidak ada saham yang memicu sinyal beli maupun jual, serta tidak ada posisi terbuka yang aktif. Sistem menyaring beberapa saham dengan skor tertinggi seperti <b>AALI</b> (skor 79, RSI 60) dan <b>ASII</b> (skor 72, RSI 56) yang masih menunjukkan tren naik, namun belum memenuhi kriteria ketat untuk eksekusi beli. Di sisi lain, tekanan jual terlihat pada saham-saham seperti <b>EMTK</b> (-6.34%) dan <b>INDY</b> (-5.7%) yang berada dalam tren turun kuat.\n\nIngat, tidak ada jaminan profit di pasar saham. Jaga manajemen risiko dengan ketat di tengah kondisi pasar yang lemah ini.",
  "charts": [
   "AALI",
   "ARTO",
