@@ -1,6 +1,16 @@
 {
  "modal": 3000000,
- "positions": [],
+ "positions": [
+  {
+   "code": "BELI",
+   "entry": 200.0,
+   "lots": 1,
+   "date": "2026-11-24",
+   "stop": 186,
+   "high": 200.0,
+   "target": 230
+  }
+ ],
  "closed": [
   {
    "code": "INDF",
@@ -17,7 +27,7 @@
   }
  ],
  "signals": [],
- "tg_offset": 257542317,
+ "tg_offset": 257542318,
  "alerts": {},
  "last_data_date": "2026-11-20"
 }
