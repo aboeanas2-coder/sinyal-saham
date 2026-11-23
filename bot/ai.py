@@ -22,22 +22,53 @@ SYSTEM = (
 )
 
 
+def _gemini_candidates(client):
+    """Model dari config dulu, lalu model 'flash' yang benar-benar tersedia untuk kunci ini."""
+    names = list(C.GEMINI_MODELS)
+    try:
+        found = []
+        for m in client.models.list():
+            name = (m.name or "").removeprefix("models/")
+            actions = getattr(m, "supported_actions", None) or []
+            if "flash" in name and "generateContent" in actions and not any(
+                    w in name for w in ("image", "tts", "audio", "live", "embedding")):
+                found.append(name)
+        # utamakan versi stabil (tanpa 'preview'/'exp'), dari yang terbaru
+        stable = sorted((n for n in found if "preview" not in n and "exp" not in n), reverse=True)
+        others = [n for n in found if n not in stable]
+        names += [n for n in stable + others if n not in names]
+        print("Model Gemini tersedia:", ", ".join(stable + others) or "-")
+    except Exception as e:
+        print("Gagal membaca daftar model Gemini:", e)
+    return names
+
+
 def _gemini(prompt):
+    import time
+
     from google import genai
     from google.genai import types
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    cfg = types.GenerateContentConfig(system_instruction=SYSTEM)
     last_err = None
-    for model in C.GEMINI_MODELS:  # coba berurutan; kalau satu model sudah tidak ada, pakai berikutnya
-        try:
-            resp = client.models.generate_content(
-                model=model, contents=prompt,
-                config=types.GenerateContentConfig(system_instruction=SYSTEM))
-            if resp.text:
-                return resp.text
-        except Exception as e:
-            print(f"Gemini {model} gagal:", e)
-            last_err = e
-    raise RuntimeError(f"semua model Gemini gagal: {last_err}")
+    for model in _gemini_candidates(client)[:8]:
+        for attempt in range(3):
+            try:
+                resp = client.models.generate_content(model=model, contents=prompt, config=cfg)
+                if resp.text:
+                    print(f"Catatan AI dibuat oleh {model}")
+                    return resp.text
+                break
+            except Exception as e:
+                last_err, msg = e, str(e)
+                print(f"Gemini {model} gagal (percobaan {attempt + 1}):", msg[:200])
+                if any(k in msg for k in ("503", "UNAVAILABLE", "overloaded", "500", "INTERNAL")):
+                    time.sleep(10 * (attempt + 1))  # server sibuk: tunggu lalu coba lagi
+                    continue
+                if any(k in msg for k in ("API key not valid", "API_KEY_INVALID", "PERMISSION_DENIED")):
+                    raise  # kunci bermasalah: model lain juga pasti gagal
+                break      # 404 / kuota habis di model ini: coba model berikutnya
+    raise RuntimeError(f"semua model Gemini gagal: {str(last_err)[:200]}")
 
 
 def _claude(prompt):
