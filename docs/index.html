@@ -82,6 +82,17 @@ let chart, current, S;
 
 async function load() {
   S = await fetch("data/summary.json?t=" + Date.now()).then(r => r.json());
+  // Posisi diambil langsung dari portfolio.json supaya /beli & /jual langsung tampil,
+  // tanpa menunggu laporan harian berikutnya.
+  try {
+    const P = await fetch("data/portfolio.json?t=" + Date.now()).then(r => r.json());
+    const lastOf = Object.fromEntries((S.positions || []).map(x => [x.code, x]));
+    S.positions = P.positions.map(x => ({...lastOf[x.code], ...x}));
+    S.closed = P.closed.slice(-20);
+    S.modal = P.modal;
+    S.cash = P.modal + P.closed.reduce((a, x) => a + (x.pnl || 0), 0)
+           - P.positions.reduce((a, x) => a + x.entry * x.lots * 100, 0);
+  } catch (e) { /* belum ada portfolio.json: pakai data dari summary */ }
   $("upd").textContent = "Diperbarui " + S.updated.split(" ")[1];
   $("sub").textContent = `Data penutupan ${S.data_date.split("-").reverse().join("-")} · diperbarui ${S.updated}`;
   $("ihsg").innerHTML = `${fmt(S.ihsg.close)} <small>${pct(S.ihsg.chg)}</small>`;
