@@ -3,8 +3,8 @@
  "positions": [
   {
    "code": "INDF",
-   "entry": 6954.0,
-   "lots": 5,
+   "entry": 6530.0,
+   "lots": 9,
    "date": "2026-11-23",
    "stop": 6525,
    "high": 6950.0,
@@ -13,7 +13,7 @@
  ],
  "closed": [],
  "signals": [],
- "tg_offset": 257542314,
+ "tg_offset": 257542315,
  "alerts": {},
  "last_data_date": "2026-11-23"
 }
