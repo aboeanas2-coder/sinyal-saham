@@ -36,6 +36,9 @@ INDEX_TICKER = "^JKSE"
 
 # ---- AI ----
 CLAUDE_MODEL = "claude-opus-5-5"
+# Gemini: alias "latest" mengikuti versi Flash terbaru; sisanya cadangan bila alias tidak tersedia.
+GEMINI_MODELS = [m for m in os.getenv("GEMINI_MODEL", "").split(",") if m] or [
+    "gemini-flash-latest", "gemini-3.8-flash", "gemini-3.5-flash-lite"]
 
 # ---- Rahasia (diisi di GitHub > Settings > Secrets) ----
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
