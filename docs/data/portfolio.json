@@ -1,9 +1,19 @@
 {
  "modal": 3000000,
- "positions": [],
+ "positions": [
+  {
+   "code": "INDF",
+   "entry": 6954.0,
+   "lots": 5,
+   "date": "2026-11-23",
+   "stop": 6525,
+   "high": 6950.0,
+   "target": 8000
+  }
+ ],
  "closed": [],
  "signals": [],
- "tg_offset": 257542312,
+ "tg_offset": 257542314,
  "alerts": {},
  "last_data_date": "2026-11-23"
 }
