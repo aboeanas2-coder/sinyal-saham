@@ -1,6 +1,7 @@
 {
  "modal": 3000000,
- "positions": [
+ "positions": [],
+ "closed": [
   {
    "code": "INDF",
    "entry": 6530.0,
@@ -8,12 +9,15 @@
    "date": "2026-11-23",
    "stop": 6525,
    "high": 6950.0,
-   "target": 8000
+   "target": 8000,
+   "exit": 6525.0,
+   "exit_date": "2026-11-23",
+   "pnl": -27997,
+   "pct": -0.08
   }
  ],
- "closed": [],
  "signals": [],
- "tg_offset": 257542315,
+ "tg_offset": 257542316,
  "alerts": {},
  "last_data_date": "2026-11-23"
 }
