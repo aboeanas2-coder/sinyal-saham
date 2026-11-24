@@ -1,9 +1,9 @@
 {
- "updated": "24-11-2026 14:04",
- "data_date": "2026-11-24",
+ "updated": "25-11-2026 03:38",
+ "data_date": "2026-11-23",
  "ihsg": {
-  "close": 5209,
-  "chg": -0.13
+  "close": 5216,
+  "chg": 1.35
  },
  "modal": 3000000,
  "cash": 2952003,
@@ -12,135 +12,135 @@
   {
    "code": "BELI",
    "action": "CUT LOSS",
-   "reason": "tren patah: tutup di bawah MA50 (260)",
-   "price": 197.0,
+   "reason": "tren patah: tutup di bawah MA50 (262)",
+   "price": 198.0,
    "lots": 1,
-   "pct": -1.5
+   "pct": -1.0
   }
  ],
  "top10": [
   {
+   "code": "ASII",
+   "price": 5400.0,
+   "chg": 1.89,
+   "score": 73,
+   "ret3m": 13.0,
+   "rsi": 59,
+   "trend": "naik",
+   "ma20": 5159.2,
+   "ma50": 4872.5
+  },
+  {
    "code": "INTP",
    "price": 6100.0,
    "chg": 0.0,
-   "score": 74,
-   "ret3m": 8.9,
+   "score": 70,
+   "ret3m": 10.9,
    "rsi": 62,
    "trend": "naik",
-   "ma20": 5837.5,
-   "ma50": 5458.6
-  },
-  {
-   "code": "ASII",
-   "price": 5375.0,
-   "chg": -0.46,
-   "score": 72,
-   "ret3m": 12.2,
-   "rsi": 58,
-   "trend": "naik",
-   "ma20": 5196.5,
-   "ma50": 4882.2
-  },
-  {
-   "code": "BTPS",
-   "price": 1080.0,
-   "chg": 1.41,
-   "score": 68,
-   "ret3m": 10.8,
-   "rsi": 65,
-   "trend": "naik",
-   "ma20": 1021.8,
-   "ma50": 989.0
-  },
-  {
-   "code": "BUKA",
-   "price": 117.0,
-   "chg": 2.63,
-   "score": 68,
-   "ret3m": 8.3,
-   "rsi": 62,
-   "trend": "naik",
-   "ma20": 105.9,
-   "ma50": 104.6
-  },
-  {
-   "code": "INDF",
-   "price": 7075.0,
-   "chg": 1.8,
-   "score": 67,
-   "ret3m": -3.1,
-   "rsi": 57,
-   "trend": "datar",
-   "ma20": 6840.0,
-   "ma50": 6836.0
+   "ma20": 5830.0,
+   "ma50": 5441.1
   },
   {
    "code": "AALI",
-   "price": 9425.0,
-   "chg": -1.57,
-   "score": 65,
-   "ret3m": 17.8,
-   "rsi": 51,
+   "price": 9575.0,
+   "chg": -1.79,
+   "score": 67,
+   "ret3m": 22.4,
+   "rsi": 55,
    "trend": "datar",
-   "ma20": 9611.2,
-   "ma50": 8888.5
+   "ma20": 9630.0,
+   "ma50": 8869.5
   },
   {
-   "code": "PGAS",
-   "price": 1510.0,
-   "chg": -0.66,
+   "code": "BTPS",
+   "price": 1065.0,
+   "chg": 0.95,
    "score": 65,
-   "ret3m": -1.6,
-   "rsi": 57,
+   "ret3m": 9.2,
+   "rsi": 62,
    "trend": "naik",
-   "ma20": 1453.0,
-   "ma50": 1417.6
+   "ma20": 1016.2,
+   "ma50": 988.3
+  },
+  {
+   "code": "BUKA",
+   "price": 114.0,
+   "chg": -2.56,
+   "score": 65,
+   "ret3m": 6.5,
+   "rsi": 59,
+   "trend": "naik",
+   "ma20": 105.2,
+   "ma50": 104.4
   },
   {
    "code": "PWON",
-   "price": 302.0,
-   "chg": 3.42,
+   "price": 292.0,
+   "chg": 2.82,
    "score": 65,
-   "ret3m": 12.7,
-   "rsi": 68,
+   "ret3m": 11.5,
+   "rsi": 63,
    "trend": "naik",
-   "ma20": 273.2,
-   "ma50": 271.2
+   "ma20": 272.8,
+   "ma50": 270.6
   },
   {
    "code": "KLBF",
-   "price": 795.0,
-   "chg": 2.58,
-   "score": 63,
-   "ret3m": -1.2,
-   "rsi": 61,
+   "price": 775.0,
+   "chg": -0.64,
+   "score": 62,
+   "ret3m": -3.7,
+   "rsi": 56,
    "trend": "naik",
-   "ma20": 755.5,
-   "ma50": 745.6
+   "ma20": 751.2,
+   "ma50": 745.1
   },
   {
-   "code": "MYOR",
-   "price": 1535.0,
-   "chg": 1.32,
-   "score": 58,
-   "ret3m": -4.1,
-   "rsi": 62,
+   "code": "PGAS",
+   "price": 1520.0,
+   "chg": -0.98,
+   "score": 55,
+   "ret3m": 0.0,
+   "rsi": 58,
    "trend": "datar",
-   "ma20": 1417.5,
-   "ma50": 1414.3
+   "ma20": 1439.5,
+   "ma50": 1418.0
+  },
+  {
+   "code": "INDF",
+   "price": 6950.0,
+   "chg": -3.47,
+   "score": 53,
+   "ret3m": -4.5,
+   "rsi": 52,
+   "trend": "datar",
+   "ma20": 6818.8,
+   "ma50": 6840.0
+  },
+  {
+   "code": "ACES",
+   "price": 350.0,
+   "chg": -0.57,
+   "score": 51,
+   "ret3m": -1.1,
+   "rsi": 57,
+   "trend": "datar",
+   "ma20": 338.0,
+   "ma50": 337.4
   }
  ],
  "watch": [
   {
    "code": "JSMR",
    "price": 2600.0,
-   "chg": 0.0,
-   "score": 32,
-   "ret3m": -7.5,
+   "chg": 2.36,
+   "score": 31,
+   "ret3m": -5.1,
    "rsi": 45,
    "trend": "datar",
-   "ma20": 2724.0,
-   "ma50": 2650.0
+   "ma20": 2736.5,
+   "ma50": 2655.4
   },
   {
    "code": "GOTO",
@@ -150,134 +150,124 @@
    "ret3m": -46.0,
    "rsi": 49,
    "trend": "datar",
-   "ma20": 25.2,
-   "ma50": 30.7
+   "ma20": 25.1,
+   "ma50": 31.1
   },
   {
    "code": "BUKA",
-   "price": 117.0,
-   "chg": 2.63,
-   "score": 68,
-   "ret3m": 8.3,
-   "rsi": 62,
+   "price": 114.0,
+   "chg": -2.56,
+   "score": 65,
+   "ret3m": 6.5,
+   "rsi": 59,
    "trend": "naik",
-   "ma20": 105.9,
-   "ma50": 104.6
+   "ma20": 105.2,
+   "ma50": 104.4
   },
   {
    "code": "BELI",
-   "price": 197.0,
-   "chg": -0.51,
-   "score": 7,
-   "ret3m": -24.8,
+   "price": 198.0,
+   "chg": 3.12,
+   "score": 9,
+   "ret3m": -23.3,
    "rsi": 33,
    "trend": "turun",
-   "ma20": 233.2,
-   "ma50": 259.7
+   "ma20": 236.2,
+   "ma50": 261.5
   },
   {
    "code": "EMTK",
    "price": 268.0,
-   "chg": 0.0,
-   "score": 10,
-   "ret3m": -47.5,
+   "chg": 0.75,
+   "score": 11,
+   "ret3m": -46.4,
    "rsi": 31,
    "trend": "turun",
-   "ma20": 293.9,
-   "ma50": 353.4
+   "ma20": 296.4,
+   "ma50": 357.8
   },
   {
    "code": "DCII",
-   "price": 141000.0,
-   "chg": 0.84,
+   "price": 139825.0,
+   "chg": -3.57,
    "score": 2,
-   "ret3m": -31.4,
-   "rsi": 18,
+   "ret3m": -32.1,
+   "rsi": 15,
    "trend": "turun",
-   "ma20": 156030.0,
-   "ma50": 179977.5
+   "ma20": 158128.8,
+   "ma50": 181189.5
   },
   {
    "code": "MTDL",
-   "price": 436.0,
-   "chg": 1.4,
-   "score": 23,
-   "ret3m": -14.5,
-   "rsi": 49,
+   "price": 430.0,
+   "chg": 0.47,
+   "score": 14,
+   "ret3m": -14.9,
+   "rsi": 44,
    "trend": "datar",
-   "ma20": 423.8,
-   "ma50": 463.9
+   "ma20": 426.4,
+   "ma50": 465.3
   },
   {
    "code": "MLPT",
-   "price": 324.0,
-   "chg": 0.62,
-   "score": 9,
-   "ret3m": -75.7,
+   "price": 322.0,
+   "chg": -1.23,
+   "score": 10,
+   "ret3m": -74.9,
    "rsi": 21,
    "trend": "turun",
-   "ma20": 396.8,
-   "ma50": 703.6
+   "ma20": 408.1,
+   "ma50": 719.8
   },
   {
    "code": "DMMX",
-   "price": 120.0,
-   "chg": -0.83,
-   "score": 9,
-   "ret3m": -40.6,
-   "rsi": 34,
+   "price": 121.0,
+   "chg": 1.68,
+   "score": 7,
+   "ret3m": -32.8,
+   "rsi": 35,
    "trend": "turun",
-   "ma20": 125.8,
-   "ma50": 149.8
-  },
-  {
-   "code": "WIRG",
-   "price": 39.0,
-   "chg": 0.0,
-   "score": 2,
-   "ret3m": -48.0,
-   "rsi": 39,
-   "trend": "turun",
-   "ma20": 39.6,
-   "ma50": 50.2
+   "ma20": 127.2,
+   "ma50": 151.1
   },
   {
    "code": "ARTO",
-   "price": 545.0,
-   "chg": 0.93,
-   "score": 17,
-   "ret3m": -45.5,
-   "rsi": 44,
+   "price": 540.0,
+   "chg": 8.0,
+   "score": 23,
+   "ret3m": -44.9,
+   "rsi": 43,
    "trend": "datar",
-   "ma20": 522.2,
-   "ma50": 666.2
+   "ma20": 523.7,
+   "ma50": 674.3
   },
   {
    "code": "BBHI",
-   "price": 730.0,
-   "chg": 23.73,
-   "score": 39,
-   "ret3m": -18.9,
-   "rsi": 71,
-   "trend": "datar",
-   "ma20": 601.0,
-   "ma50": 696.0
+   "price": 590.0,
+   "chg": 0.0,
+   "score": 14,
+   "ret3m": -34.1,
+   "rsi": 35,
+   "trend": "turun",
+   "ma20": 594.5,
+   "ma50": 699.4
   },
   {
    "code": "WIFI",
-   "price": 870.0,
-   "chg": -4.4,
-   "score": 23,
-   "ret3m": -57.6,
-   "rsi": 43,
+   "price": 910.0,
+   "chg": 11.66,
+   "score": 30,
+   "ret3m": -53.8,
+   "rsi": 46,
    "trend": "datar",
-   "ma20": 845.0,
-   "ma50": 1219.3
+   "ma20": 850.0,
+   "ma50": 1240.7
   }
  ],
- "ai": "<b>Laporan Pasar BEI - 2026-11-24</b>\n\nIHSG melemah tipis <b>-0.13%</b> ke <b>5209</b> dan masih di bawah MA50, menunjukkan tren yang belum aman.\n\nHari ini tidak ada <b>sinyal beli</b> baru karena sistem menyaring ketat saham potensial seperti INTP dan ASII yang trennya masih naik, namun risikonya tetap ada jika tekanan jual pasar meluas.\n\nUntuk posisi terbuka, saham BELI terpaksa kena <b>CUT LOSS</b> di 197.0 (rugi <b>-1.5%</b>) karena tren patah dan tutup di bawah rata-rata penting. \n\nKelola risiko dengan ketat karena IHSG masih di bawah MA50.",
+ "ai": "<b>Laporan Pasar BEI - 23 November 2026</b>\n\nIHSG menguat 1.35% ke 5216, namun posisi masih di bawah MA50. Waspada tren mayor belum sepenuhnya aman.\n\n<b>Sinyal Beli &amp; Risiko:</b>\nTidak ada sinyal beli baru hari ini. Sistem menyaring saham dengan skor tinggi seperti ASII dan INTP, namun belum ada yang memicu entri beli baru karena risiko koreksi pasar masih membayangi.\n\n<b>Posisi &amp; Sinyal Jual:</b>\nPosisi saham BELI terkena <b>CUT LOSS</b> di 198 (rugi -1.0%) karena tren patah dan ditutup di bawah area krusial. Disiplin potong rugi wajib dijalankan untuk mengamankan sisa modal.\n\nHati-hati, pasar sedang lemah dan risiko terjebak tren turun masih sangat tinggi.",
  "charts": [
   "AALI",
+  "ACES",
   "ARTO",
   "ASII",
   "BBHI",
@@ -294,11 +284,9 @@
   "KLBF",
   "MLPT",
   "MTDL",
-  "MYOR",
   "PGAS",
   "PWON",
-  "WIFI",
-  "WIRG"
+  "WIFI"
  ],
  "positions": [
   {
@@ -309,9 +297,9 @@
    "stop": 186,
    "high": 200.0,
    "target": 230,
-   "last": 197.0,
+   "last": 198.0,
    "days": 0,
-   "pct": -1.5,
+   "pct": -1.0,
    "status": "CUT LOSS"
   }
  ],
