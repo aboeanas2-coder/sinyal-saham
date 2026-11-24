@@ -8,7 +8,11 @@
    "date": "2026-11-24",
    "stop": 186,
    "high": 200.0,
-   "target": 230
+   "target": 230,
+   "last": 197.0,
+   "days": 0,
+   "pct": -1.5,
+   "status": "CUT LOSS"
   }
  ],
  "closed": [
@@ -28,6 +32,8 @@
  ],
  "signals": [],
  "tg_offset": 257542318,
- "alerts": {},
- "last_data_date": "2026-11-20"
+ "alerts": {
+  "BELI": "2026-11-24"
+ },
+ "last_data_date": "2026-11-24"
 }
