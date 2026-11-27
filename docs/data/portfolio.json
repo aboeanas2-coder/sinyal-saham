@@ -9,9 +9,9 @@
    "stop": 186,
    "high": 200.0,
    "target": 230,
-   "last": 190.0,
-   "days": 3,
-   "pct": -5.0,
+   "last": 193.0,
+   "days": 2,
+   "pct": -3.5,
    "status": "CUT LOSS"
   }
  ],
@@ -33,7 +33,7 @@
  "signals": [],
  "tg_offset": 257542318,
  "alerts": {
-  "BELI": "2026-11-27"
+  "BELI": "2026-11-28"
  },
- "last_data_date": "2026-11-27"
+ "last_data_date": "2026-11-26"
 }
